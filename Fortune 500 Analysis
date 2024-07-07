@@ -1,4 +1,4 @@
-#This analysis utilized the folowing Fortune 500 dataset:
+# This analysis utilizes the following Fortune 500 dataset:
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
@@ -58,51 +58,65 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
+
 # Analysis:
 
-# Which technology and telecommunications companies have over 100,000 employees and an average employee tenure of at laeas 5 years?
-SELECT company_name, industry
+
+# What is the average revenue for companies in the retail industry?
+
+SELECT ROUND(AVG(revenue),1)
+FROM fortune_companies
+WHERE industry = "Retail";
+
+
+# What is the average revenue for companies with at least 500,000 employees?
+
+SELECT AVG(revenue)
+FROM fortune_companies
+WHERE employees >= 500000;
+
+
+# Which company in the energy industry made the most revenue?
+
+SELECT company_name, MAX(revenue)
+FROM fortune_companies
+WHERE industry = "Energy";
+
+
+# Which industries have an average revenue of at least $300 billion and what are their average revenues?
+
+SELECT industry, ROUND(AVG(revenue),1)
+FROM fortune_companies
+GROUP BY industry
+HAVING AVG(revenue) >= 300;
+
+
+# Which technology and telecommunications companies have over 100,000 employees and an average employee tenure of at least 5 years?
+
+SELECT company_name, industry, employees, avg_employee_tenure
 FROM fortune_companies
 WHERE (industry="Technology"
 OR industry="Telecommunications")
 AND employees>100000
-AND avg_employee_tenure>=5
-;
+AND avg_employee_tenure>=5;
+
 
 # Rate which manufacturing companies have the best benefits for their employees based on healthcare benefits and paid time off.
+
 SELECT company_name, paid_time_off_days,
-CASE WHEN paid_time_off_days>=20 THEN "Good"
-WHEN paid_time_off_days>=14 THEN "Average"
-ELSE "Below Average" 
+CASE WHEN paid_time_off_days >= 20 THEN "Good"
+WHEN paid_time_off_days >= 14 THEN "Average"
+ELSE "Below Average"
 END AS rating
 FROM fortune_companies
-WHERE industry="Manufacturing"
-AND healthcare_benefits=1
-;
+WHERE industry = "Manufacturing"
+AND healthcare_benefits = 1;
 
-# What is the average revenue for companies in the retail industry?
-SELECT ROUND(AVG(revenue),1), company_name
-FROM fortune_companies
-WHERE industry="Retail"
-;
-
-# What is each industry’s sum of revenue for companies with over 3000 employees?
-SELECT industry, SUM(revenue)
-FROM fortune_companies
-GROUP BY industry
-HAVING employees>=3000
-;
-
-# Which company in the energy industry made the most revenue?
-SELECT company_name, MAX(revenue)
-FROM fortune_companies
-WHERE industry="Energy"
-;
 
 # Which healthcare companies offer at least 14 days of paid time off and healthcare benefits?
+
 SELECT company_name, paid_time_off_days AS pto
 FROM fortune_companies
-WHERE industry="Healthcare"
-AND pto>=14
-AND healthcare_benefits=1
-;
+WHERE pto >= 14
+AND healthcare_benefits = 1
+ORDER BY pto DESC;

@@ -1,4 +1,4 @@
-# This project utilizes data from the following two Netflix datasets:
+# This project was written using the PostgreSQL dialect and utilized data from the following two Netflix datasets:
 
 
 CREATE TABLE netflix_titles_info

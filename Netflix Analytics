@@ -1,4 +1,4 @@
-# This project utilizes data from the following Netflix dataset:
+# This project utilizes data from the following two Netflix datasets:
 
 
 CREATE TABLE netflix_titles_info

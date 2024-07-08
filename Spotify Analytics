@@ -2,7 +2,7 @@
 # Then I created a table to insert the Spotify data into.
 # Finally, I performed analytics on the data using SQL.
 
-#Creating the table:
+# Creating the table:
 
 CREATE TABLE BIT_DB.Spotifydata (
 id integer PRIMARY KEY,
@@ -26,57 +26,58 @@ time_signature integer NOT NULL
 )
 
 # I then inserted the Spotify .csv into the table.
-# Next, I explored the data using the following SQL:
+# Next, I answered the following questions using SQL:
 
 
--- #1 Which song is the most popular and who was the artist?
+#1 Which song is the most popular and who was the artist?
 
 SELECT track_name, artist_name
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC
 LIMIT 1;
 
-SELECT track_name, artist_name, MAX(popularity)
-FROM BIT_DB.Spotifydata;
 
--- #2 Which song was the least popular and who was the artist?
+#2 Which song was the least popular and who was the artist?
 
 SELECT track_name, artist_name
 FROM BIT_DB.Spotifydata
 ORDER BY popularity ASC
 LIMIT 1;
 
-SELECT track_name, artist_name, MIN(popularity)
-FROM BIT_DB.Spotifydata;
 
--- #3 Which 15 songs have the best danceability?
+#3 Which 15 songs have the best danceability?
 
 SELECT track_name
 FROM BIT_DB.Spotifydata
 ORDER BY danceability DESC
 LIMIT 15;
 
--- #4 Which 5 songs have the most lyrics?
+
+#4 Which 5 songs have the most lyrics?
 
 SELECT track_name
 FROM BIT_DB.Spotifydata
 ORDER BY speechiness DESC
 LIMIT 5;
 
--- #5 Which songs have an instrumental score above 0.0001?
 
-SELECT track_name, instrumentalness
-FROM BIT_DB.Spotifydata
-WHERE instrumentalness > 0.0001; 
-
--- #8 How many top 50 hits did Olivia Rodrigo have?
+#5 How many top 50 hits did Olivia Rodrigo have?
 
 SELECT COUNT(*)
 FROM BIT_DB.Spotifydata
 WHERE artist_name = 'Olivia Rodrigo';
 
--- #9 What is the average popularity of songs with an energy of 0.7 or greater?
+
+#6 What is the average popularity of songs with an energy of 0.7 or greater?
 
 SELECT AVG(popularity)
 FROM BIT_DB.Spotifydata
 WHERE energy >= 0.7;
+
+
+#7 Who are the top 10 artists based on popularity?
+
+SELECT DISTINCT artist_name
+FROM BIT_DB.Spotifydata
+ORDER BY popularity
+LIMIT 10;

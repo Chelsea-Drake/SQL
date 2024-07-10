@@ -1,6 +1,6 @@
-# For this project, I downloaded Spotify data from Kaggle.
-# Then I created a table to insert the Spotify data into.
-# Finally, I performed analytics on the data using SQL.
+In this project, I downloaded Spotify data from Kaggle, consisting of multiple attributes such as artist name, track name, popularity, 
+danceability, energy, and more. Next I queried the dataset with the following SQL to provide actionable insights to understand trends in 
+music popularity, artist performance, and specific song attributes.
 
 # Creating the table:
 
@@ -24,9 +24,6 @@ tempo decimal(6,3) NOT NULL,
 duration_ms integer NOT NULL,
 time_signature integer NOT NULL 
 )
-
-# I then inserted the Spotify .csv into the table.
-# Next, I answered the following questions using SQL:
 
 
 #1 Which song is the most popular and who was the artist?

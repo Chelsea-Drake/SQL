@@ -41,7 +41,7 @@ FROM superstore
 ORDER BY price DESC
 LIMIT 1;
 
-# What is the average price for items in the category "Kitchen Supplies"?
+# What is the average price for items in the category "Kitchen Supplies?"
 
 SELECT AVG(price)
 FROM superstore
